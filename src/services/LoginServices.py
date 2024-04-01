@@ -12,7 +12,7 @@ from ..settings import settings
 from datetime import datetime, timedelta
 
 
-oauth2_cheme = OAuth2PasswordBearer(tokenUrl='/v1/login/sign-in/')
+oauth2_cheme = OAuth2PasswordBearer(tokenUrl='/v1/login/sign-in')
 
 
 def get_current_user(token: str = Depends(oauth2_cheme)) -> UserGet:

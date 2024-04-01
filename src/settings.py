@@ -19,4 +19,4 @@ class Settings(BaseSettings):
     pgport: int
 
 
-settings = Settings(_env_file="settings_server_debug.env", _env_file_encoding="utf-8")
+settings = Settings(_env_file="settings_server.env", _env_file_encoding="utf-8")
