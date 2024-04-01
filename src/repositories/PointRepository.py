@@ -48,3 +48,5 @@ class PointRepository:
         ).order_by(desc(Point.id)).limit(1)
         request = await self.__session.execute(query)
         return request.scalars().first()
+
+

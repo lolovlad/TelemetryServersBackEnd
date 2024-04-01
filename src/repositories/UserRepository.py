@@ -67,5 +67,9 @@ class UserRepository:
         response = await self.__session.execute(query)
         return response.scalars().first()
 
+    async def get_user_by_type(self, name_type_user: str) -> list[User]:
+        query = select(User).join(TypeUser).where(TypeUser.name == name_type_user)
+        response = await self.__session.execute(query)
+        return response.scalars().all()
 
 

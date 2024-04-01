@@ -5,7 +5,7 @@ services:
     container_name: nginx-python
     image: nginx:latest
     depends_on:
-      -  app
+      -  app-telemetry
     ports:
       - 8082:80
     volumes:
@@ -43,9 +43,9 @@ services:
     networks:
       - default
 
-  app:
-    container_name: "app"
-    image: app
+  app-telemetry:
+    container_name: "app-telemetry"
+    image: app-telemetry
     env_file:
       - settings_server.env
     build:
@@ -57,5 +57,5 @@ services:
     networks:
       - default
     depends_on:
-      - db-main
+      - db-server
       - pgadmin

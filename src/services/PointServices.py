@@ -116,3 +116,18 @@ class PointServices:
             all_grade=all_grade,
             list_grades=grades
         )
+
+    async def get_list_point_last(self, date: str, uuid_user: str,  type_point: str) -> list[GetPoint]:
+        user = await self.__user_repository.get_by_uuid(uuid_user)
+        date = datetime.strptime(date, '%d.%m.%Y')
+
+        list_type_point = list(map(int, type_point.split(",")))
+
+        list_point = []
+
+        for type_point in list_type_point:
+            point = await self.__point_repository.get_last_points_in_date(date, user.id, type_point)
+
+            list_point.append(GetPoint.model_validate(point, from_attributes=True))
+
+        return list_point

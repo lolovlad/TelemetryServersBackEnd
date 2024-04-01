@@ -63,3 +63,16 @@ async def get_grade_equ(
     if user.type.name in ("user", "admin"):
         point_list = await service.grade_equipment(data, uuid_user, list_type_point)
         return point_list
+
+
+@router.get("/one_day/{data}/{uuid_user}/last", response_model=list[GetPoint])
+async def get_list_point_last(
+        data: str,
+        uuid_user: str,
+        list_type_point: str,
+        user: UserGet = Depends(get_current_user),
+        service: PointServices = Depends(),
+):
+    if user.type.name in ("user", "admin"):
+        point_list = await service.get_list_point_last(data, uuid_user, list_type_point)
+        return point_list
